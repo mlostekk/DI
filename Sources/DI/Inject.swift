@@ -2,22 +2,13 @@
 
 import Foundation
 
-/// Use this property wrapper to resolve property based dependencies
+/// Inject a simple object without connectivity to combine or swiftUI
 @propertyWrapper
 public struct Inject<TYPE> {
 
-    public var wrappedValue: TYPE {
-        get {
-            value
-        }
-        set {
-            value = newValue
-        }
-    }
-
-    private var value: TYPE
+    public private(set) var wrappedValue: TYPE
 
     public init() {
-        value = DependencyResolver.shared.resolve()
+        wrappedValue = DependencyResolver.shared.resolve()
     }
 }
